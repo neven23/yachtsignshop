@@ -1,0 +1,21 @@
+[build]
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+[functions."fal-proxy"]
+  timeout = 26
+
+[functions."claude-proxy"]
+  timeout = 30
+
+[[redirects]]
+  from = "/api/fal-proxy"
+  to = "/.netlify/functions/fal-proxy"
+  status = 200
+
+[[redirects]]
+  from = "/api/claude-proxy"
+  to = "/.netlify/functions/claude-proxy"
+  status = 200
