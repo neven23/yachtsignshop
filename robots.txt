@@ -1,0 +1,13 @@
+# Robots.txt for yachtsignshop.com
+# Allow all crawlers access to public pages
+
+User-agent: *
+Allow: /
+
+# Block admin pages from indexing
+Disallow: /admin.html
+Disallow: /admin-order.js
+Disallow: /claude-proxy.js
+
+# Sitemap location
+Sitemap: https://yachtsignshop.com/sitemap.xml
