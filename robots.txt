@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Disallow: /.netlify/
+
+# Block AI training crawlers
+User-agent: GPTBot
+Disallow: /
+User-agent: CCBot
+Disallow: /
+User-agent: anthropic-ai
+Disallow: /
+User-agent: Claude-Web
+Disallow: /
+
+Sitemap: https://yachtsignshop.com/sitemap.xml
