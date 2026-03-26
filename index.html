@@ -404,6 +404,20 @@ body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;f
 .size-note{font-size:0.68rem;color:var(--text-light);margin-top:0.75rem;line-height:1.6;}
 
 /* LED */
+.led-toggle-row{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:1rem;}
+.led-opt{border:1.5px solid var(--border);border-radius:var(--radius);padding:1rem;cursor:pointer;transition:all 0.2s;background:var(--white);text-align:center;}
+.led-opt:hover{border-color:var(--navy);}
+.led-opt.active{border-color:var(--navy);background:var(--cream2);box-shadow:0 0 0 3px rgba(13,27,46,0.08);}
+.led-opt-icon{font-size:1.5rem;margin-bottom:0.4rem;}
+.led-opt-label{font-size:0.82rem;font-weight:600;color:var(--navy);}
+.led-opt-sub{font-size:0.68rem;color:var(--text-light);margin-top:0.15rem;}
+.led-details{margin-top:0.75rem;border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem;background:var(--cream2);display:none;}
+.led-details.visible{display:block;}
+.led-details-title{font-size:0.8rem;font-weight:600;color:var(--navy);margin-bottom:0.3rem;}
+.led-details-desc{font-size:0.7rem;color:var(--text-mid);line-height:1.6;}
+.led-details-price{font-size:0.8rem;font-weight:600;color:var(--gold);margin-top:0.4rem;}
+.led-features{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;}
+.led-feat{font-size:0.62rem;background:var(--white);border:1px solid var(--border);border-radius:100px;padding:0.2rem 0.6rem;color:var(--text-mid);}
 .led-card{margin-top:1.2rem;border:1.5px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem;display:flex;align-items:center;gap:1rem;cursor:pointer;transition:all 0.2s;background:var(--white);}
 .led-card:hover{border-color:var(--navy);}
 .led-card.active{border-color:var(--blue);background:#f0f7ff;}
@@ -2385,13 +2399,29 @@ src="https://www.facebook.com/tr?id=1900397030421076&ev=PageView&noscript=1"
         <div class="step-arr">▾</div>
       </div>
       <div class="step-body">
-        <div class="led-card" id="ledCard" onclick="toggleLED()">
-          
-          <div class="led-body">
-            <div class="led-title-row"><span class="led-title">IP68 Dimmable RGB LED Lighting</span><span class="led-tag">Dimmable RGB · IP68</span></div>
-            <div class="led-desc">Fully dimmable, 16 million colour RGB. Set any hue — warm white, ocean blue, gold, or match your boat's accent lighting. IP68 submersion-rated. Transforms your sign after sunset. Wiring kit & controller included.</div>
-            <div class="led-price" id="ledCardPrice">+20% of sign price</div>
+        <div class="led-toggle-row">
+          <div class="led-opt active" id="ledOptNo" onclick="setLED(false)">
+            <div class="led-opt-icon">✕</div>
+            <div class="led-opt-label">No LED</div>
+            <div class="led-opt-sub">Sign only</div>
           </div>
+          <div class="led-opt" id="ledOptYes" onclick="setLED(true)">
+            <div class="led-opt-icon">💡</div>
+            <div class="led-opt-label">Add LED Lighting</div>
+            <div class="led-opt-sub" id="ledCardPrice">+20% of sign price</div>
+          </div>
+        </div>
+        <div class="led-details" id="ledDetails">
+          <div class="led-details-title">IP68 Dimmable RGB LED Lighting</div>
+          <div class="led-details-desc">Fully dimmable, 16 million colour RGB. Set any hue — warm white, ocean blue, gold, or match your boat's accent lighting. IP68 submersion-rated. Transforms your sign after sunset.</div>
+          <div class="led-features">
+            <span class="led-feat">Dimmable RGB</span>
+            <span class="led-feat">16M Colours</span>
+            <span class="led-feat">IP68 Rated</span>
+            <span class="led-feat">Wiring Kit Included</span>
+            <span class="led-feat">Controller Included</span>
+          </div>
+          <div class="led-details-price" id="ledDetailPrice">+20% of sign price</div>
         </div>
         <button class="btn-cont" onclick="nextStep(5)">Review & Add to Cart →</button>
       </div>
@@ -4199,14 +4229,17 @@ function onCustomSize(v) {
 }
 
 // ── LED ──
-function toggleLED() {
-  S.led = !S.led;
-  document.getElementById('ledCard').classList.toggle('active', S.led);
+function toggleLED() { setLED(!S.led); }
+function setLED(on) {
+  S.led = on;
+  document.getElementById('ledOptNo').classList.toggle('active', !on);
+  document.getElementById('ledOptYes').classList.toggle('active', on);
+  const details = document.getElementById('ledDetails');
+  if (details) details.classList.toggle('visible', on);
   const lc2 = document.getElementById('ledCard2');
-  if (lc2) lc2.classList.toggle('active', S.led);
-  document.getElementById('sum5').textContent = S.led ? 'IP68 LED — Added ✓' : 'Dimmable RGB — 16M colours, IP68 rated';
-  // Back-lit LEDs look best on dark hull — auto-switch when toggling on
-  if (S.led && previewBg !== 'dark') {
+  if (lc2) lc2.classList.toggle('active', on);
+  document.getElementById('sum5').textContent = on ? 'IP68 LED — Added ✓' : 'No LED selected';
+  if (on && previewBg !== 'dark') {
     const darkBtn = document.querySelector('.bg-tog[title="Dark hull"]');
     if (darkBtn) setBg(darkBtn, 'dark');
   }
