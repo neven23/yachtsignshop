@@ -140,6 +140,14 @@ body{background:var(--navy);color:var(--white);font-family:'DM Sans',sans-serif;
   ]
 }
 </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E2MFPF0Z7Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E2MFPF0Z7Z');
+</script>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -245,6 +253,10 @@ function handleSubmit(e) {
   e.preventDefault();
   document.getElementById('contactForm').style.display = 'none';
   document.getElementById('formSuccess').style.display = 'block';
+  gtag('event', 'generate_lead', {
+    event_category: 'Contact',
+    event_label: document.getElementById('subject') ? document.getElementById('subject').value : 'contact_form'
+  });
 }
 </script>
 </body>

@@ -1894,6 +1894,14 @@ footer{background:var(--navy);padding:3.5rem 1.5rem 2rem;}
 </style>
 <script src="https://js.stripe.com/v3/" defer></script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E2MFPF0Z7Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E2MFPF0Z7Z');
+</script>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -4242,6 +4250,10 @@ function addToCart() {
   });
   renderCart();
   showToast('Added to cart!');
+  gtag('event', 'add_to_cart', {
+    currency: 'USD', value: p.total,
+    items: [{ item_name: S.name, item_category: S.mat, item_variant: S.finish, price: p.total }]
+  });
   setTimeout(() => openDrawer(), 400);
 }
 function removeItem(id) { S.cart = S.cart.filter(i => i.id !== id); renderCart(); }
@@ -4301,6 +4313,10 @@ function openCheckout() {
     `<div class="ms-line"><span>Shipping</span><span>${ship}</span></div>` +
     `<div class="ms-line total-line"><span>Total</span><span>$${grand}</span></div>`;
   document.getElementById('checkoutModal').classList.add('open');
+  gtag('event', 'begin_checkout', {
+    currency: 'USD', value: parseFloat(grand),
+    items: S.cart.map(i => ({ item_name: i.name, item_category: i.mat, price: i.price }))
+  });
 }
 function closeCheckout() {
   document.getElementById('checkoutModal').classList.remove('open');
@@ -4407,6 +4423,10 @@ function placeOrder() {
         })
       }).catch(e => console.error('Order email error:', e));
 
+      gtag('event', 'purchase', {
+        transaction_id: orderId, currency: 'USD', value: p.total,
+        items: order.cart.map(i => ({ item_name: i.name, item_category: i.mat, item_variant: i.finish, price: i.price }))
+      });
       S.cart = [];
       renderCart();
       btn.classList.remove('loading');
