@@ -4385,6 +4385,21 @@ function placeOrder() {
         localStorage.setItem('nameplate_orders', JSON.stringify(existing));
       } catch(e) {}
 
+      // Send order confirmation email (fire-and-forget)
+      fetch('/.netlify/functions/send-order-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          customerName: (fname + ' ' + lname).trim(),
+          orderId,
+          signName: S.name,
+          material: S.mat,
+          size: String(S.sizeIn),
+          total: p.total
+        })
+      }).catch(e => console.error('Order email error:', e));
+
       S.cart = [];
       renderCart();
       btn.classList.remove('loading');
