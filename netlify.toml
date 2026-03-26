@@ -83,6 +83,16 @@
   to = "/.netlify/functions/claude-proxy"
   status = 200
 
+[[redirects]]
+  from = "/api/send-order-email"
+  to = "/.netlify/functions/send-order-email"
+  status = 200
+
+[[redirects]]
+  from = "/api/send-shipping-email"
+  to = "/.netlify/functions/send-shipping-email"
+  status = 200
+
 # ===== SEO Headers =====
 [[headers]]
   for = "/*"
