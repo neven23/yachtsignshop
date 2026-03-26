@@ -2129,13 +2129,13 @@ src="https://www.facebook.com/tr?id=1900397030421076&ev=PageView&noscript=1"
       </div>
       <div class="step-body">
         <div class="mat-grid">
-          <div class="mat-card active" id="mc-brass" onclick="selMat(this,'brass','Brass','#c9942a',0)">
+          <div class="mat-card" id="mc-brass" onclick="selMat(this,'brass','Brass','#c9942a',0)">
             <div class="mat-sw brass"></div>
             <div class="mat-name">Naval Brass</div>
             <div class="mat-desc">Classic golden warmth. Anti-corrosive. Mirror or brushed finish.</div>
             <div class="mat-price">Priced by size</div>
           </div>
-          <div class="mat-card" id="mc-steel" onclick="selMat(this,'steel','316 Stainless','#90a4ae',0)">
+          <div class="mat-card active" id="mc-steel" onclick="selMat(this,'steel','316 Stainless','#90a4ae',0)">
             <div class="mat-pop">Most Popular</div>
             <div class="mat-sw steel"></div>
             <div class="mat-name">316 Stainless Steel</div>
@@ -2160,7 +2160,7 @@ src="https://www.facebook.com/tr?id=1900397030421076&ev=PageView&noscript=1"
         <a href="craft.html" target="_blank" id="matCraftCallout" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:0.9rem;padding:0.7rem 1rem;background:rgba(184,137,42,0.06);border:1px solid rgba(184,137,42,0.18);border-radius:3px;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='rgba(184,137,42,0.11)'" onmouseout="this.style.background='rgba(184,137,42,0.06)'">
           <div style="display:flex;align-items:center;gap:0.6rem;">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b8892a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            <span id="matCraftText" style="font-size:0.75rem;color:rgba(255,255,255,0.6);">Why C46400 naval brass? See how we source and finish it →</span>
+            <span id="matCraftText" style="font-size:0.75rem;color:rgba(255,255,255,0.6);">Why 316L marine stainless? See our mirror-polish process →</span>
           </div>
           <span style="font-size:0.7rem;color:var(--gold);white-space:nowrap;font-weight:600;">The Craft ↗</span>
         </a>
@@ -3229,7 +3229,7 @@ function applyFinishPreview() {
 
 const S = {
   name: 'Sea Breeze',
-  mat: 'Brass', matColor: '#c9942a', matCustom: false,
+  mat: '316 Stainless', matColor: '#90a4ae', matCustom: false,
   finish: 'Mirror Polish',
   font: "Cormorant Garamond, serif", fontName: 'Cormorant',
   fontStyle: 'italic',
