@@ -216,7 +216,7 @@ exports.handler = async function(event) {
         <!-- Footer -->
         <tr>
           <td style="padding:24px 40px;text-align:center;">
-            <p style="margin:0 0 8px;color:#8899aa;font-size:12px;">Questions? Reply to this email or call <strong style="color:#ffffff;">1-800-SIGN-NOW</strong></p>
+            <p style="margin:0 0 8px;color:#8899aa;font-size:12px;">Questions? Reply to this email or call <strong style="color:#ffffff;">305-462-1848</strong></p>
             <p style="margin:0 0 16px;">
               <a href="${SITE_URL}/contact" style="color:#b8892a;font-size:12px;text-decoration:none;margin:0 8px;">Contact</a>
               <span style="color:#1e2f45;">&middot;</span>
