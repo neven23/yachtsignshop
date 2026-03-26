@@ -51,7 +51,7 @@
       },
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+1-800-SIGN-NOW",
+        "telephone": "+305-462-1848",
         "contactType": "customer service",
         "availableLanguage": "English"
       },
@@ -404,6 +404,24 @@ body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;f
 .size-note{font-size:0.68rem;color:var(--text-light);margin-top:0.75rem;line-height:1.6;}
 
 /* LED */
+.led-switch-row{display:flex;align-items:center;justify-content:space-between;margin-top:1rem;padding:1rem 1.2rem;border:1.5px solid var(--border);border-radius:var(--radius);background:var(--white);cursor:pointer;transition:all 0.2s;}
+.led-switch-row:hover{border-color:var(--navy);}
+.led-switch-row.active{border-color:var(--navy);background:var(--cream2);}
+.led-switch-info{flex:1;}
+.led-switch-title{font-size:0.85rem;font-weight:600;color:var(--navy);}
+.led-switch-sub{font-size:0.7rem;color:var(--text-light);margin-top:0.15rem;}
+.led-switch-price{font-size:0.8rem;font-weight:600;color:var(--gold);margin-top:0.2rem;}
+.led-toggle-track{width:44px;height:24px;border-radius:12px;background:var(--border);position:relative;transition:background 0.2s;flex-shrink:0;margin-left:1rem;}
+.led-toggle-track::after{content:'';position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:var(--white);transition:transform 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.15);}
+.led-switch-row.active .led-toggle-track{background:var(--navy);}
+.led-switch-row.active .led-toggle-track::after{transform:translateX(20px);}
+.led-details{margin-top:0.75rem;border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem;background:var(--cream2);display:none;}
+.led-details.visible{display:block;}
+.led-details-title{font-size:0.8rem;font-weight:600;color:var(--navy);margin-bottom:0.3rem;}
+.led-details-desc{font-size:0.7rem;color:var(--text-mid);line-height:1.6;}
+.led-details-price{font-size:0.8rem;font-weight:600;color:var(--gold);margin-top:0.4rem;}
+.led-features{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;}
+.led-feat{font-size:0.62rem;background:var(--white);border:1px solid var(--border);border-radius:100px;padding:0.2rem 0.6rem;color:var(--text-mid);}
 .led-card{margin-top:1.2rem;border:1.5px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem;display:flex;align-items:center;gap:1rem;cursor:pointer;transition:all 0.2s;background:var(--white);}
 .led-card:hover{border-color:var(--navy);}
 .led-card.active{border-color:var(--blue);background:#f0f7ff;}
@@ -1946,7 +1964,7 @@ src="https://www.facebook.com/tr?id=1900397030421076&ev=PageView&noscript=1"
   </div>
   <div class="nav-right">
     <a href="craft.html" class="nav-craft-link">The Craft ↗</a>
-    <div class="nav-phone">Questions? <strong>1-800-SIGN-NOW</strong></div>
+    <div class="nav-phone">Questions? <strong>305-462-1848</strong></div>
     <button class="btn-cart" onclick="openDrawer()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Cart <span class="cart-badge" id="cartBadge">0</span></button>
   </div>
 </nav>
@@ -2137,13 +2155,13 @@ src="https://www.facebook.com/tr?id=1900397030421076&ev=PageView&noscript=1"
       </div>
       <div class="step-body">
         <div class="mat-grid">
-          <div class="mat-card active" id="mc-brass" onclick="selMat(this,'brass','Brass','#c9942a',0)">
+          <div class="mat-card" id="mc-brass" onclick="selMat(this,'brass','Brass','#c9942a',0)">
             <div class="mat-sw brass"></div>
             <div class="mat-name">Naval Brass</div>
             <div class="mat-desc">Classic golden warmth. Anti-corrosive. Mirror or brushed finish.</div>
             <div class="mat-price">Priced by size</div>
           </div>
-          <div class="mat-card" id="mc-steel" onclick="selMat(this,'steel','316 Stainless','#90a4ae',0)">
+          <div class="mat-card active" id="mc-steel" onclick="selMat(this,'steel','316 Stainless','#90a4ae',0)">
             <div class="mat-pop">Most Popular</div>
             <div class="mat-sw steel"></div>
             <div class="mat-name">316 Stainless Steel</div>
@@ -2168,7 +2186,7 @@ src="https://www.facebook.com/tr?id=1900397030421076&ev=PageView&noscript=1"
         <a href="craft.html" target="_blank" id="matCraftCallout" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:0.9rem;padding:0.7rem 1rem;background:rgba(184,137,42,0.06);border:1px solid rgba(184,137,42,0.18);border-radius:3px;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='rgba(184,137,42,0.11)'" onmouseout="this.style.background='rgba(184,137,42,0.06)'">
           <div style="display:flex;align-items:center;gap:0.6rem;">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b8892a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            <span id="matCraftText" style="font-size:0.75rem;color:rgba(255,255,255,0.6);">Why C46400 naval brass? See how we source and finish it →</span>
+            <span id="matCraftText" style="font-size:0.75rem;color:rgba(255,255,255,0.6);">Why 316L marine stainless? See our mirror-polish process →</span>
           </div>
           <span style="font-size:0.7rem;color:var(--gold);white-space:nowrap;font-weight:600;">The Craft ↗</span>
         </a>
@@ -2393,12 +2411,25 @@ src="https://www.facebook.com/tr?id=1900397030421076&ev=PageView&noscript=1"
         <div class="step-arr">▾</div>
       </div>
       <div class="step-body">
-        <div class="led-card" id="ledCard" onclick="toggleLED()">
-          
-          <div class="led-body">
-            <div class="led-title-row"><span class="led-title">IP68 Dimmable RGB LED Lighting</span><span class="led-tag">Dimmable RGB · IP68</span></div>
-            <div class="led-desc">Fully dimmable, 16 million colour RGB. Set any hue — warm white, ocean blue, gold, or match your boat's accent lighting. IP68 submersion-rated. Transforms your sign after sunset. Wiring kit & controller included.</div>
-            <div class="led-price" id="ledCardPrice">+20% of sign price</div>
+        <div class="led-switch-row" id="ledSwitchRow" onclick="toggleLED()">
+          <div class="led-switch-info">
+            <div class="led-switch-title">Add IP68 Dimmable RGB LED Lighting</div>
+            <div class="led-switch-sub">16M colours · Dimmable · Wiring kit included</div>
+            <div class="led-switch-price" id="ledCardPrice">+20% of sign price</div>
+          </div>
+          <div class="led-toggle-track" id="ledToggleTrack"></div>
+        </div>
+        <div class="led-details" id="ledDetails">
+          <div class="led-details-title">IP68 Dimmable RGB LED Lighting</div>
+          <div class="led-details-desc">Fully dimmable, 16 million colour RGB. Set any hue — warm white, ocean blue, gold, or match your boat's accent lighting. IP68 submersion-rated. Transforms your sign after sunset.</div>
+          <div class="led-features">
+            <span class="led-feat">Dimmable RGB</span>
+            <span class="led-feat">16M Colours</span>
+            <span class="led-feat">IP68 Rated</span>
+            <span class="led-feat">Wiring Kit Included</span>
+            <span class="led-feat">Controller Included</span>
+          </div>
+          <div class="led-details-price" id="ledDetailPrice">+20% of sign price</div>
         </div>
         <button class="btn-cont" onclick="nextStep(5)">Review & Add to Cart →</button>
       </div>
@@ -2524,8 +2555,7 @@ src="https://www.facebook.com/tr?id=1900397030421076&ev=PageView&noscript=1"
         <button class="btn-addcart" style="margin-top:1.2rem" onclick="addToCart()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Add to Cart — <span id="ctaPriceLeft">—</span></button>
       </div>
     </div>
-  </div>
-</div><!-- /config-left -->
+  </div><!-- /config-left -->
 
   <!-- ORDER CARD -->
   <div class="order-col">
@@ -3237,7 +3267,7 @@ function applyFinishPreview() {
 
 const S = {
   name: 'Sea Breeze',
-  mat: 'Brass', matColor: '#c9942a', matCustom: false,
+  mat: '316 Stainless', matColor: '#90a4ae', matCustom: false,
   finish: 'Mirror Polish',
   font: "Cormorant Garamond, serif", fontName: 'Cormorant',
   fontStyle: 'italic',
@@ -4206,14 +4236,17 @@ function onCustomSize(v) {
 }
 
 // ── LED ──
-function toggleLED() {
-  S.led = !S.led;
-  document.getElementById('ledCard').classList.toggle('active', S.led);
+function toggleLED() { setLED(!S.led); }
+function setLED(on) {
+  S.led = on;
+  const switchRow = document.getElementById('ledSwitchRow');
+  if (switchRow) switchRow.classList.toggle('active', on);
+  const details = document.getElementById('ledDetails');
+  if (details) details.classList.toggle('visible', on);
   const lc2 = document.getElementById('ledCard2');
-  if (lc2) lc2.classList.toggle('active', S.led);
-  document.getElementById('sum5').textContent = S.led ? 'IP68 LED — Added ✓' : 'Dimmable RGB — 16M colours, IP68 rated';
-  // Back-lit LEDs look best on dark hull — auto-switch when toggling on
-  if (S.led && previewBg !== 'dark') {
+  if (lc2) lc2.classList.toggle('active', on);
+  document.getElementById('sum5').textContent = on ? 'IP68 LED — Added ✓' : 'No LED selected';
+  if (on && previewBg !== 'dark') {
     const darkBtn = document.querySelector('.bg-tog[title="Dark hull"]');
     if (darkBtn) setBg(darkBtn, 'dark');
   }
@@ -5366,7 +5399,7 @@ function toggleAllFonts() {
   const btn = document.getElementById('fontToggleBtn');
   if (!wrap || !btn) return;
   const isHidden = wrap.style.display === 'none';
-  wrap.style.display = isHidden ? '' : 'none';
+  wrap.style.display = isHidden ? 'contents' : 'none';
   btn.textContent = isHidden ? 'Show fewer fonts ▴' : 'Show all 31 fonts ▾';
 }
 
