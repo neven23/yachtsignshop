@@ -3,41 +3,65 @@ function buildShippingEmailHtml({ customerName, orderNumber, trackingNumber, tra
   const trackLink = trackingUrl || `https://www.google.com/search?q=${encodeURIComponent(trackingNumber)}`;
   return `<!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#f4f4f4;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f4;padding:40px 20px;">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body style="margin:0;padding:0;background:#0d1b2e;font-family:'DM Sans',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0d1b2e;padding:0;">
     <tr><td align="center">
-      <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
-        <tr><td style="background:#0d1b2e;padding:32px 40px;text-align:center;">
-          <h1 style="margin:0;color:#c9a84c;font-size:24px;font-weight:600;letter-spacing:1px;">YACHT SIGN SHOP</h1>
+      <table width="600" cellpadding="0" cellspacing="0"><tr><td style="height:3px;background:linear-gradient(90deg,#0d1b2e,#b8892a,#d4a84b,#b8892a,#0d1b2e);font-size:0;line-height:0;">&nbsp;</td></tr></table>
+      <table width="600" cellpadding="0" cellspacing="0" style="background:#0d1b2e;">
+        <tr><td style="padding:40px 40px 0;text-align:center;">
+          <table cellpadding="0" cellspacing="0" align="center"><tr><td style="border:1.5px solid #b8892a;padding:8px 16px;">
+            <span style="font-family:'DM Serif Display',Georgia,serif;font-size:14px;color:#ffffff;letter-spacing:2px;">YACHT SIGN</span><br>
+            <span style="font-family:'DM Sans',Arial,sans-serif;font-size:9px;color:#b8892a;letter-spacing:4px;">SHOP</span>
+          </td></tr></table>
         </td></tr>
-        <tr><td style="padding:40px;">
-          <h2 style="margin:0 0 8px;color:#0d1b2e;font-size:22px;">Your order has shipped!</h2>
-          <p style="margin:0 0 24px;color:#555;font-size:15px;line-height:1.6;">Hi ${customerName || 'there'}, great news &mdash; your custom yacht sign is on its way!</p>
-          <table width="100%" cellpadding="0" cellspacing="0" style="background:#f8f7f4;border-radius:6px;margin-bottom:24px;">
-            <tr><td style="padding:24px;">
-              <p style="margin:0 0 12px;color:#0d1b2e;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;">Shipping Details</p>
+        <tr><td style="padding:32px 40px 0;text-align:center;">
+          <span style="font-size:32px;">&#9978;</span>
+          <p style="margin:12px 0 0;font-size:11px;color:#b8892a;letter-spacing:2px;text-transform:uppercase;font-weight:600;">ORDER SHIPPED</p>
+        </td></tr>
+        <tr><td style="padding:16px 40px 0;text-align:center;">
+          <h1 style="margin:0;font-family:'DM Serif Display',Georgia,serif;font-size:32px;font-weight:400;color:#ffffff;line-height:1.2;">Your Sign Is<br>On Its Way</h1>
+        </td></tr>
+        <tr><td style="padding:16px 50px 0;text-align:center;">
+          <p style="margin:0;color:#8899aa;font-size:15px;line-height:1.7;">Hi ${customerName || 'there'}, great news &mdash; your custom yacht sign has been hand-finished, inspected, and is now en route to you.</p>
+        </td></tr>
+        <tr><td style="padding:32px 60px 0;"><table width="100%" cellpadding="0" cellspacing="0"><tr><td style="height:1px;background:#1e2f45;font-size:0;">&nbsp;</td></tr></table></td></tr>
+        <tr><td style="padding:24px 40px 0;">
+          <table width="100%" cellpadding="0" cellspacing="0" style="background:#162033;border:1px solid #1e2f45;border-radius:8px;">
+            <tr><td style="padding:28px 28px 8px;"><p style="margin:0 0 16px;color:#b8892a;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;">Shipping Details</p></td></tr>
+            <tr><td style="padding:0 28px;">
               <table width="100%" cellpadding="0" cellspacing="0">
-                <tr><td style="padding:6px 0;color:#777;font-size:14px;">Order Number</td><td style="padding:6px 0;color:#0d1b2e;font-size:14px;font-weight:600;text-align:right;">${orderNumber}</td></tr>
-                <tr><td style="padding:6px 0;color:#777;font-size:14px;">Tracking Number</td><td style="padding:6px 0;color:#0d1b2e;font-size:14px;font-weight:600;text-align:right;">${trackingNumber}</td></tr>
+                <tr><td style="padding:10px 0;color:#8899aa;font-size:14px;border-bottom:1px solid #1e2f45;">Order Number</td><td style="padding:10px 0;color:#ffffff;font-size:14px;font-weight:600;text-align:right;border-bottom:1px solid #1e2f45;">${orderNumber}</td></tr>
+                <tr><td style="padding:10px 0;color:#8899aa;font-size:14px;">Tracking Number</td><td style="padding:10px 0;color:#d4a84b;font-size:14px;font-weight:600;text-align:right;font-family:monospace;letter-spacing:0.5px;">${trackingNumber}</td></tr>
               </table>
             </td></tr>
-          </table>
-          <p style="margin:0 0 24px;color:#555;font-size:14px;line-height:1.7;">You can track your package using the button below. Most orders arrive within 5&ndash;7 business days.</p>
-          <table width="100%" cellpadding="0" cellspacing="0">
-            <tr><td align="center" style="padding:8px 0;">
-              <a href="${trackLink}" style="display:inline-block;background:#0d1b2e;color:#c9a84c;text-decoration:none;padding:14px 32px;border-radius:6px;font-size:14px;font-weight:600;letter-spacing:0.5px;">Track Your Package</a>
-            </td></tr>
-          </table>
-          <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:16px;">
-            <tr><td align="center"><a href="${SITE_URL}/track" style="color:#0d1b2e;font-size:13px;text-decoration:underline;">View order status on our website</a></td></tr>
+            <tr><td style="padding:0 0 20px;">&nbsp;</td></tr>
           </table>
         </td></tr>
-        <tr><td style="background:#f8f7f4;padding:24px 40px;border-top:1px solid #e8e6e0;">
-          <p style="margin:0 0 4px;color:#999;font-size:12px;text-align:center;">Yacht Sign Shop</p>
-          <p style="margin:0;color:#bbb;font-size:11px;text-align:center;">Questions? Reply to this email or visit <a href="${SITE_URL}/contact" style="color:#c9a84c;">our contact page</a>.</p>
+        <tr><td style="padding:32px 40px 0;text-align:center;">
+          <a href="${trackLink}" style="display:inline-block;background:#b8892a;color:#ffffff;text-decoration:none;padding:16px 40px;border-radius:4px;font-family:'DM Sans',Arial,sans-serif;font-size:14px;font-weight:600;letter-spacing:0.5px;">Track Your Package</a>
         </td></tr>
+        <tr><td style="padding:16px 40px 0;text-align:center;">
+          <a href="${SITE_URL}/track" style="color:#8899aa;font-size:13px;text-decoration:underline;margin-right:16px;">View order status</a>
+          <a href="${SITE_URL}/installation" style="color:#8899aa;font-size:13px;text-decoration:underline;">Installation guide</a>
+        </td></tr>
+        <tr><td style="padding:40px 60px 0;"><table width="100%" cellpadding="0" cellspacing="0"><tr><td style="height:1px;background:#1e2f45;font-size:0;">&nbsp;</td></tr></table></td></tr>
+        <tr><td style="padding:24px 40px;text-align:center;">
+          <p style="margin:0 0 8px;color:#8899aa;font-size:12px;">Questions? Reply to this email or call <strong style="color:#ffffff;">1-800-SIGN-NOW</strong></p>
+          <p style="margin:0 0 16px;">
+            <a href="${SITE_URL}/contact" style="color:#b8892a;font-size:12px;text-decoration:none;margin:0 8px;">Contact</a><span style="color:#1e2f45;">&middot;</span>
+            <a href="${SITE_URL}/shipping" style="color:#b8892a;font-size:12px;text-decoration:none;margin:0 8px;">Shipping</a><span style="color:#1e2f45;">&middot;</span>
+            <a href="${SITE_URL}/returns" style="color:#b8892a;font-size:12px;text-decoration:none;margin:0 8px;">Returns</a><span style="color:#1e2f45;">&middot;</span>
+            <a href="${SITE_URL}/installation" style="color:#b8892a;font-size:12px;text-decoration:none;margin:0 8px;">Installation</a>
+          </p>
+          <p style="margin:0;color:#4a5568;font-size:11px;">Marine-grade custom boat name signs. Hand-crafted for vessels that deserve to make an impression.</p>
+        </td></tr>
+        <tr><td style="height:20px;font-size:0;">&nbsp;</td></tr>
       </table>
+      <table width="600" cellpadding="0" cellspacing="0"><tr><td style="height:3px;background:linear-gradient(90deg,#0d1b2e,#b8892a,#d4a84b,#b8892a,#0d1b2e);font-size:0;line-height:0;">&nbsp;</td></tr></table>
     </td></tr>
   </table>
 </body>
