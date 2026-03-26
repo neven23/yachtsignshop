@@ -2391,6 +2391,7 @@ src="https://www.facebook.com/tr?id=1900397030421076&ev=PageView&noscript=1"
             <div class="led-title-row"><span class="led-title">IP68 Dimmable RGB LED Lighting</span><span class="led-tag">Dimmable RGB · IP68</span></div>
             <div class="led-desc">Fully dimmable, 16 million colour RGB. Set any hue — warm white, ocean blue, gold, or match your boat's accent lighting. IP68 submersion-rated. Transforms your sign after sunset. Wiring kit & controller included.</div>
             <div class="led-price" id="ledCardPrice">+20% of sign price</div>
+          </div>
         </div>
         <button class="btn-cont" onclick="nextStep(5)">Review & Add to Cart →</button>
       </div>
@@ -5346,7 +5347,7 @@ function toggleAllFonts() {
   const btn = document.getElementById('fontToggleBtn');
   if (!wrap || !btn) return;
   const isHidden = wrap.style.display === 'none';
-  wrap.style.display = isHidden ? '' : 'none';
+  wrap.style.display = isHidden ? 'contents' : 'none';
   btn.textContent = isHidden ? 'Show fewer fonts ▴' : 'Show all 31 fonts ▾';
 }
 
