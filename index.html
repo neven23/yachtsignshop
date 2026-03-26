@@ -404,13 +404,17 @@ body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;f
 .size-note{font-size:0.68rem;color:var(--text-light);margin-top:0.75rem;line-height:1.6;}
 
 /* LED */
-.led-toggle-row{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:1rem;}
-.led-opt{border:1.5px solid var(--border);border-radius:var(--radius);padding:1rem;cursor:pointer;transition:all 0.2s;background:var(--white);text-align:center;}
-.led-opt:hover{border-color:var(--navy);}
-.led-opt.active{border-color:var(--navy);background:var(--cream2);box-shadow:0 0 0 3px rgba(13,27,46,0.08);}
-.led-opt-icon{font-size:1.5rem;margin-bottom:0.4rem;}
-.led-opt-label{font-size:0.82rem;font-weight:600;color:var(--navy);}
-.led-opt-sub{font-size:0.68rem;color:var(--text-light);margin-top:0.15rem;}
+.led-switch-row{display:flex;align-items:center;justify-content:space-between;margin-top:1rem;padding:1rem 1.2rem;border:1.5px solid var(--border);border-radius:var(--radius);background:var(--white);cursor:pointer;transition:all 0.2s;}
+.led-switch-row:hover{border-color:var(--navy);}
+.led-switch-row.active{border-color:var(--navy);background:var(--cream2);}
+.led-switch-info{flex:1;}
+.led-switch-title{font-size:0.85rem;font-weight:600;color:var(--navy);}
+.led-switch-sub{font-size:0.7rem;color:var(--text-light);margin-top:0.15rem;}
+.led-switch-price{font-size:0.8rem;font-weight:600;color:var(--gold);margin-top:0.2rem;}
+.led-toggle-track{width:44px;height:24px;border-radius:12px;background:var(--border);position:relative;transition:background 0.2s;flex-shrink:0;margin-left:1rem;}
+.led-toggle-track::after{content:'';position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:var(--white);transition:transform 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.15);}
+.led-switch-row.active .led-toggle-track{background:var(--navy);}
+.led-switch-row.active .led-toggle-track::after{transform:translateX(20px);}
 .led-details{margin-top:0.75rem;border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem;background:var(--cream2);display:none;}
 .led-details.visible{display:block;}
 .led-details-title{font-size:0.8rem;font-weight:600;color:var(--navy);margin-bottom:0.3rem;}
@@ -2407,17 +2411,13 @@ src="https://www.facebook.com/tr?id=1900397030421076&ev=PageView&noscript=1"
         <div class="step-arr">▾</div>
       </div>
       <div class="step-body">
-        <div class="led-toggle-row">
-          <div class="led-opt active" id="ledOptNo" onclick="setLED(false)">
-            <div class="led-opt-icon">✕</div>
-            <div class="led-opt-label">No LED</div>
-            <div class="led-opt-sub">Sign only</div>
+        <div class="led-switch-row" id="ledSwitchRow" onclick="toggleLED()">
+          <div class="led-switch-info">
+            <div class="led-switch-title">Add IP68 Dimmable RGB LED Lighting</div>
+            <div class="led-switch-sub">16M colours · Dimmable · Wiring kit included</div>
+            <div class="led-switch-price" id="ledCardPrice">+20% of sign price</div>
           </div>
-          <div class="led-opt" id="ledOptYes" onclick="setLED(true)">
-            <div class="led-opt-icon">💡</div>
-            <div class="led-opt-label">Add LED Lighting</div>
-            <div class="led-opt-sub" id="ledCardPrice">+20% of sign price</div>
-          </div>
+          <div class="led-toggle-track" id="ledToggleTrack"></div>
         </div>
         <div class="led-details" id="ledDetails">
           <div class="led-details-title">IP68 Dimmable RGB LED Lighting</div>
@@ -2555,8 +2555,7 @@ src="https://www.facebook.com/tr?id=1900397030421076&ev=PageView&noscript=1"
         <button class="btn-addcart" style="margin-top:1.2rem" onclick="addToCart()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Add to Cart — <span id="ctaPriceLeft">—</span></button>
       </div>
     </div>
-  </div>
-</div><!-- /config-left -->
+  </div><!-- /config-left -->
 
   <!-- ORDER CARD -->
   <div class="order-col">
@@ -4240,8 +4239,8 @@ function onCustomSize(v) {
 function toggleLED() { setLED(!S.led); }
 function setLED(on) {
   S.led = on;
-  document.getElementById('ledOptNo').classList.toggle('active', !on);
-  document.getElementById('ledOptYes').classList.toggle('active', on);
+  const switchRow = document.getElementById('ledSwitchRow');
+  if (switchRow) switchRow.classList.toggle('active', on);
   const details = document.getElementById('ledDetails');
   if (details) details.classList.toggle('visible', on);
   const lc2 = document.getElementById('ledCard2');
