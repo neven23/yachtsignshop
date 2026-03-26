@@ -9,7 +9,7 @@ exports.handler = async function(event) {
     return { statusCode: 204, headers: CORS, body: '' };
   }
 
-  const FAL_KEY = 'c197cf8c-6dd1-48d2-af56-5e77aa5b45dd:21f86665e04697d7621ab01641bddddc';
+  const FAL_KEY = process.env.FAL_KEY;
   const falHeaders = { 'Authorization': 'Key ' + FAL_KEY, 'Content-Type': 'application/json' };
 
   try {
