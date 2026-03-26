@@ -20,10 +20,12 @@ exports.handler = async function(event) {
     return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: 'Invalid JSON' }) };
   }
 
-  const { email, customerName, orderId, signName, material, size, total } = body;
+  const { email, customerName, orderId, signName, material, finish, font, size, led, total, address, city, state, zip } = body;
   if (!email || !orderId) {
     return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: 'email and orderId required' }) };
   }
+
+  const shippingAddress = [address, city, [state, zip].filter(Boolean).join(' ')].filter(Boolean).join(', ');
 
   const SITE_URL = process.env.URL || 'https://yachtsignshop.com';
 
@@ -110,9 +112,21 @@ exports.handler = async function(event) {
                     <td style="padding:10px 0;color:#8899aa;font-size:14px;border-bottom:1px solid #1e2f45;">Material</td>
                     <td style="padding:10px 0;color:#ffffff;font-size:14px;text-align:right;border-bottom:1px solid #1e2f45;">${material}</td>
                   </tr>` : ''}
+                  ${finish ? `<tr>
+                    <td style="padding:10px 0;color:#8899aa;font-size:14px;border-bottom:1px solid #1e2f45;">Finish</td>
+                    <td style="padding:10px 0;color:#ffffff;font-size:14px;text-align:right;border-bottom:1px solid #1e2f45;">${finish}</td>
+                  </tr>` : ''}
+                  ${font ? `<tr>
+                    <td style="padding:10px 0;color:#8899aa;font-size:14px;border-bottom:1px solid #1e2f45;">Font</td>
+                    <td style="padding:10px 0;color:#ffffff;font-size:14px;text-align:right;border-bottom:1px solid #1e2f45;">${font}</td>
+                  </tr>` : ''}
                   ${size ? `<tr>
                     <td style="padding:10px 0;color:#8899aa;font-size:14px;border-bottom:1px solid #1e2f45;">Size</td>
                     <td style="padding:10px 0;color:#ffffff;font-size:14px;text-align:right;border-bottom:1px solid #1e2f45;">${size}"</td>
+                  </tr>` : ''}
+                  ${led ? `<tr>
+                    <td style="padding:10px 0;color:#8899aa;font-size:14px;border-bottom:1px solid #1e2f45;">LED Lighting</td>
+                    <td style="padding:10px 0;color:#ffffff;font-size:14px;text-align:right;border-bottom:1px solid #1e2f45;">${led}</td>
                   </tr>` : ''}
                   ${total ? `<tr>
                     <td style="padding:14px 0 4px;color:#ffffff;font-size:15px;font-weight:600;">Order Total</td>
@@ -124,6 +138,20 @@ exports.handler = async function(event) {
             </table>
           </td>
         </tr>
+
+        <!-- Shipping Address Card -->
+        ${shippingAddress ? `<tr>
+          <td style="padding:16px 40px 0;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="background:#162033;border:1px solid #1e2f45;border-radius:8px;">
+              <tr><td style="padding:24px 28px;">
+                <p style="margin:0 0 12px;color:#b8892a;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;">Shipping To</p>
+                <p style="margin:0;color:#ffffff;font-size:14px;line-height:1.6;">${customerName || ''}</p>
+                ${address ? `<p style="margin:4px 0 0;color:#c0ccda;font-size:14px;line-height:1.6;">${address}</p>` : ''}
+                <p style="margin:4px 0 0;color:#c0ccda;font-size:14px;line-height:1.6;">${[city, [state, zip].filter(Boolean).join(' ')].filter(Boolean).join(', ')}</p>
+              </td></tr>
+            </table>
+          </td>
+        </tr>` : ''}
 
         <!-- What's Next Section -->
         <tr>

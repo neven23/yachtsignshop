@@ -4395,8 +4395,15 @@ function placeOrder() {
           orderId,
           signName: S.name,
           material: S.mat,
+          finish: S.finish,
+          font: S.fontName,
           size: String(S.sizeIn),
-          total: p.total
+          led: S.led,
+          total: p.total,
+          address: addr,
+          city,
+          state,
+          zip
         })
       }).catch(e => console.error('Order email error:', e));
 
