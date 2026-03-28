@@ -248,5 +248,29 @@ exports.handler = async function(event) {
     return { statusCode: 200, headers: CORS, body: JSON.stringify(data) };
   }
 
+  // DELETE order
+  if (action === 'delete') {
+    const { order_number } = body;
+    if (!order_number) {
+      return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: 'order_number required' }) };
+    }
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/orders?order_number=eq.${encodeURIComponent(order_number.trim().toUpperCase())}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Prefer': 'return=minimal',
+        },
+      }
+    );
+    if (!res.ok) {
+      const err = await res.text();
+      return { statusCode: res.status, headers: CORS, body: JSON.stringify({ error: err }) };
+    }
+    return { statusCode: 200, headers: CORS, body: JSON.stringify({ success: true }) };
+  }
+
   return { statusCode: 400, headers: CORS, body: JSON.stringify({ error: 'Unknown action' }) };
 };
