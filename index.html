@@ -713,10 +713,10 @@ footer{background:var(--navy);padding:3.5rem 1.5rem 2rem;}
 .trust-badge{display:flex;align-items:center;gap:0.35rem;font-size:0.63rem;color:rgba(255,255,255,0.3);}
 .btn-place{width:100%;background:var(--gold);color:#fff;border:none;padding:1.1rem;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:0.92rem;font-weight:700;cursor:pointer;transition:all 0.2s;margin-top:1rem;letter-spacing:0.03em;box-shadow:0 2px 14px rgba(184,137,42,0.4);}
 .btn-place:hover{background:var(--gold-light);transform:translateY(-1px);box-shadow:0 6px 24px rgba(184,137,42,0.5);}
-.success-state{display:none;text-align:center;padding:3rem 2rem;}
-.success-state.show{display:block;}
+.success-state{display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 2rem;}
 .success-check{font-size:3rem;margin-bottom:1rem;}
 .success-title{font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--navy);margin-bottom:0.5rem;}
+.success-order-id{font-size:0.8rem;color:var(--text-light);margin-bottom:1rem;}
 .success-msg{font-size:0.8rem;color:var(--text-mid);line-height:1.8;max-width:360px;margin:0 auto 2rem;}
 
 /* TOAST */
@@ -3172,9 +3172,10 @@ src="https://www.facebook.com/tr?id=1900397030421076&ev=PageView&noscript=1"
 
       </div>
     </div>
-    <div class="success-state" id="successState">
+    <div class="success-state" id="successScreen" style="display:none">
       <div class="success-check">✓</div>
       <div class="success-title">Order Confirmed!</div>
+      <div class="success-order-id">Order <strong id="successOrderId"></strong></div>
       <p class="success-msg">You'll receive your digital design proof within <strong>3 business days</strong>. Once you approve it, your sign ships within <strong>7 days</strong>, complete with a 1:1 installation template and mounting hardware.</p>
       <button class="btn-hp" style="font-family:'DM Sans',sans-serif" onclick="closeCheckout();resetAll()">Continue Shopping</button>
     </div>
@@ -4337,7 +4338,8 @@ function openCheckout() {
 }
 function closeCheckout() {
   document.getElementById('checkoutModal').classList.remove('open');
-  document.getElementById('successState').classList.remove('show');
+  const suc = document.getElementById('successScreen');
+  if (suc) suc.style.display = 'none';
   document.getElementById('checkoutContent').style.display = 'block';
 }
 function placeOrder() {
