@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="google-site-verification" content="rC4tTSTabA8gNEtZI3ArTB5FM29xYcnqB5aw8aP6qsU" />
-<meta name="viewport" content="width=device-width,
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Order custom boat name signs in solid brass, 316 stainless steel & LED-illuminated acrylic. CNC-precision cut. Proof in 24 hrs, ships in 5–7 days. 4.9★ from 847 reviews. From $89.">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="keywords" content="custom boat name signs, yacht name signs, brass boat letters, stainless steel boat letters, LED boat signs, custom marine lettering, nautical name plates, boat hull letters, yacht lettering, boat name plaques">
@@ -1909,6 +1909,155 @@ footer{background:var(--navy);padding:3.5rem 1.5rem 2rem;}
 .config-seo-header{background:var(--cream);padding:2.5rem 2rem 0;max-width:1100px;margin:0 auto;}
 .config-seo-h2{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:0.5rem;}
 .config-seo-p{font-size:0.82rem;color:var(--text-mid);max-width:640px;line-height:1.7;margin:0;}
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE-FIRST OPTIMIZATIONS (100% mobile traffic)
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Tighter layout on small screens ── */
+@media(max-width:480px){
+  .main{padding:1rem 0.75rem;gap:1.5rem;}
+  .step-header{padding:0.9rem 1rem;gap:0.75rem;}
+  .step-body{padding:0 1rem 1rem;}
+  .config-step{margin-bottom:0.5rem;}
+
+  /* Hero: less padding, tighter text */
+  .hero{padding:3rem 1.25rem 2.5rem;}
+  .hero h1{font-size:2rem;margin-bottom:0.75rem;}
+  .hero-sub{font-size:0.82rem;margin-bottom:1.5rem;}
+  .hero-eyebrow{font-size:0.6rem;padding:0.3rem 0.75rem;margin-bottom:1rem;}
+  .hero-seo-tag{font-size:0.62rem;}
+  .hero-actions{gap:0.6rem;}
+  .btn-hp,.btn-hs{padding:0.85rem 1.6rem;font-size:0.82rem;flex:1;text-align:center;min-width:0;}
+
+  /* Progress bar: compact */
+  .progress-bar-wrap{padding:0.8rem 0.5rem;margin-bottom:0.75rem;}
+  .prog-dot{width:24px;height:24px;font-size:0.58rem;}
+  .prog-label{font-size:0.5rem;letter-spacing:0.03em;}
+
+  /* Name input: more accessible */
+  .name-input{font-size:1.2rem;padding:0.8rem 3rem 0.8rem 0.8rem;}
+
+  /* Material cards: full bleed */
+  .mat-grid{gap:0.5rem;}
+  .mat-card{padding:0.75rem;}
+  .mat-name{font-size:0.78rem;}
+  .mat-desc{font-size:0.62rem;}
+
+  /* Finish chips: larger touch targets */
+  .finish-chip{padding:0.55rem 0.85rem;font-size:0.72rem;}
+
+  /* Font grid: ensure 2-col */
+  .font-grid{grid-template-columns:repeat(2,1fr) !important;gap:0.4rem;max-height:400px;}
+  .font-card{padding:0.5rem 0.3rem;min-height:60px;}
+  .font-demo{font-size:0.95rem;}
+  .font-label{font-size:0.5rem;}
+
+  /* Size presets: 3-col on mobile */
+  .size-presets{grid-template-columns:repeat(3,1fr);gap:0.4rem;}
+  .size-opt{padding:0.6rem 0.3rem;}
+  .so-label{font-size:0.78rem;}
+
+  /* LED toggle: bigger touch target */
+  .led-switch-row{padding:0.85rem 1rem;}
+  .led-switch-title{font-size:0.8rem;}
+
+  /* Continue buttons: full width, thumb-friendly */
+  .btn-cont{width:100%;padding:0.9rem;font-size:0.85rem;border-radius:var(--radius);}
+
+  /* Proof bar: scrollable on small screens */
+  .proof-bar{gap:1rem;padding:0.5rem 1rem;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .proof-bar::-webkit-scrollbar{display:none;}
+  .proof-item .num{font-size:0.8rem;}
+  .proof-item .lbl{font-size:0.62rem;}
+
+  /* Trust strip: wrap nicely */
+  .trust-strip{padding:0.6rem 0.75rem;gap:0.5rem;}
+  .trust-item{padding:0 0.6rem;font-size:0.62rem;border-right:none;}
+
+  /* Gallery: single column */
+  .gg2-grid{column-count:2;padding:0 0.5rem;}
+
+  /* Reviews: tighter */
+  .reviews-section{padding:3rem 1rem;}
+
+  /* Process section */
+  .process-section{padding:3rem 1rem;}
+
+  /* Materials section */
+  .materials-section{padding:3rem 1rem;}
+
+  /* Footer */
+  footer{padding:2.5rem 1rem 1.5rem;}
+
+  /* Checkout modal: full screen on mobile */
+  .modal-overlay{padding:0;}
+  .modal-box{border-radius:0;max-width:100%;min-height:100vh;border:none;}
+  .modal-top{padding:1rem 1.25rem;}
+  .modal-top-title{font-size:1.1rem;}
+  .modal-body{padding:1rem 1.25rem 1.5rem;}
+  .msec-title{font-size:0.82rem;}
+  .fg.c2{grid-template-columns:1fr;gap:0.75rem;}
+  .btn-place{padding:1rem;font-size:0.9rem;}
+  .ssl-note{font-size:0.62rem;}
+  .trust-badges{gap:0.5rem;}
+  .trust-badge{font-size:0.6rem;padding:0.3rem 0.6rem;}
+
+  /* Cart drawer: wider on mobile */
+  .cart-drawer{width:100%;max-width:100%;}
+
+  /* Config SEO header */
+  .config-seo-header{padding:1.5rem 1rem 0;}
+  .config-seo-h2{font-size:1.2rem;}
+  .config-seo-p{font-size:0.75rem;}
+
+  /* Add to cart button: bigger */
+  .btn-addcart{width:100%;padding:0.9rem;font-size:0.85rem;}
+
+  /* Sizing guide: tighter */
+  .size-guide-box{padding:0.7rem 0.75rem;}
+  .sgb-row{font-size:0.65rem;}
+}
+
+/* ── Medium mobile (up to 600px) ── */
+@media(max-width:600px){
+  .main{padding:1.25rem 1rem;gap:1.5rem;}
+
+  /* Order col on mobile: no sticky, natural flow */
+  .order-col{margin-top:0;}
+
+  /* Path toggle: full width buttons */
+  .path-toggle{margin-bottom:0.75rem;}
+  .path-btn{padding:0.5rem 0.75rem;font-size:0.72rem;}
+
+  /* Floating preview: ensure it's usable */
+  .float-preview{gap:0.6rem;}
+
+  /* CTA block */
+  .cta-block{padding:0.75rem 1rem;}
+
+  /* Font style toggles */
+  .font-style-row{flex-wrap:wrap;gap:0.5rem;}
+}
+
+/* ── Smooth scrolling and touch optimizations ── */
+@media(max-width:960px){
+  /* Prevent horizontal overflow on mobile */
+  html,body{overflow-x:hidden;max-width:100vw;}
+
+  /* Smoother scrolling for config steps */
+  html{scroll-behavior:smooth;-webkit-overflow-scrolling:touch;}
+
+  /* Make all interactive elements have minimum touch target */
+  .mat-card,.font-card,.size-opt,.finish-chip,.led-switch-row,.pf-card{
+    -webkit-tap-highlight-color:transparent;
+  }
+
+  /* Ensure inputs don't zoom on iOS (16px minimum) */
+  input[type="text"],input[type="email"],input[type="number"],input[type="tel"],select,textarea{
+    font-size:16px !important;
+  }
+}
 </style>
 <script src="https://js.stripe.com/v3/" defer></script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
