@@ -1,0 +1,8 @@
+{
+  "name": "yacht-sign-shop",
+  "version": "1.0.0",
+  "description": "Yacht Sign Shop – custom marine name signs",
+  "dependencies": {
+    "stripe": "^14.0.0"
+  }
+}
