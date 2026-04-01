@@ -4436,6 +4436,30 @@ function placeOrder() {
         localStorage.setItem('nameplate_orders', JSON.stringify(existing));
       } catch(e) {}
 
+      // Save order to database (primary path — webhook is backup)
+      fetch('/.netlify/functions/save-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          orderId,
+          stripePaymentId: paymentIntent.id,
+          customerName: (fname + ' ' + lname).trim(),
+          email,
+          signName: S.name,
+          material: S.mat,
+          finish: S.finish,
+          font: S.fontName,
+          size: String(S.sizeIn),
+          led: S.led,
+          total: p.total,
+          address: addr,
+          city,
+          state,
+          zip,
+          cart: JSON.parse(JSON.stringify(S.cart))
+        })
+      }).catch(e => console.error('Save order error:', e));
+
       // Send order confirmation email (fire-and-forget)
       fetch('/.netlify/functions/send-order-email', {
         method: 'POST',
