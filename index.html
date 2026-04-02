@@ -5510,5 +5510,128 @@ function onTurnstileExpired() {
     <img id="boatLbImg" src="" alt="Your sign on your boat" onclick="event.stopPropagation()">
     <button id="boatLbDownload" onclick="event.stopPropagation();boatLbDownloadFn()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:0.7"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Save Image</button>
   </div>
+
+<!-- GA4 Custom Event Tracking -->
+<script>
+(function() {
+  // Helper to fire GA4 events
+  function track(eventName, params) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: eventName, ...params });
+    if (typeof gtag === 'function') {
+      gtag('event', eventName, params || {});
+    }
+  }
+
+  // Wait for DOM ready
+  function onReady(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  onReady(function () {
+
+    // ── 1. "Design Your Sign →" homepage button ──
+    var heroBtn = document.querySelector('.btn-hp');
+    if (heroBtn) {
+      heroBtn.addEventListener('click', function () {
+        track('builder_started', { method: 'hero_button' });
+      });
+    }
+
+    // ── 2. Boat name entered (Step 1 Continue button) ──
+    var step1Continue = document.querySelector('#step1 .btn-cont');
+    if (step1Continue) {
+      step1Continue.addEventListener('click', function () {
+        var nameVal = (document.getElementById('boatNameInput') || {}).value || '';
+        if (nameVal.trim().length > 0) {
+          track('boat_name_entered', { boat_name: nameVal.trim() });
+        }
+      });
+    }
+
+    // ── 3. "Design It For Me AI" card selected ──
+    var pfAI = document.getElementById('pfAI');
+    if (pfAI) {
+      pfAI.addEventListener('click', function () {
+        track('ai_designer_clicked', {});
+      });
+    }
+
+    // ── 4. "My Boat AI" visualizer tab clicked ──
+    var tabMyBoat = document.getElementById('tabMyBoat');
+    if (tabMyBoat) {
+      tabMyBoat.addEventListener('click', function () {
+        track('myboat_ai_opened', {});
+      });
+    }
+
+    // ── 5. "✦ Generate 3 Designs" button ──
+    var aiGenerateBtn = document.getElementById('aiGenerateBtn');
+    if (aiGenerateBtn) {
+      aiGenerateBtn.addEventListener('click', function () {
+        track('ai_generate_clicked', {});
+      });
+    }
+
+    // ── 6. "✦ Apply This Design to My Order" ──
+    document.addEventListener('click', function (e) {
+      if (e.target && e.target.classList.contains('ai-apply-btn')) {
+        track('ai_design_applied', {});
+      }
+    });
+
+    // ── 7. Step 2 – Material & Finish ──
+    var step2Continue = document.querySelector('#step2 .btn-cont');
+    if (step2Continue) {
+      step2Continue.addEventListener('click', function () {
+        var selected = document.querySelector('#step2 .finish-chip.active');
+        track('step2_material_selected', {
+          material: selected ? selected.innerText.trim() : 'unknown'
+        });
+      });
+    }
+
+    // ── 8. Step 3 – Typography / Font ──
+    var step3Continue = document.querySelector('#step3 .btn-cont');
+    if (step3Continue) {
+      step3Continue.addEventListener('click', function () {
+        var selectedFont = document.querySelector('#step3 .fst-btn.active');
+        track('step3_font_selected', {
+          font_style: selectedFont ? selectedFont.innerText.trim() : 'unknown'
+        });
+      });
+    }
+
+    // ── 9. Step 4 – Sign Size ──
+    var step4Continue = document.querySelector('#step4 .btn-cont');
+    if (step4Continue) {
+      step4Continue.addEventListener('click', function () {
+        track('step4_size_selected', {});
+      });
+    }
+
+    // ── 10. Step 5 – LED → "Review & Add to Cart" ──
+    var step5Continue = document.querySelector('#step5 .btn-cont');
+    if (step5Continue) {
+      step5Continue.addEventListener('click', function () {
+        track('step5_review_reached', {});
+      });
+    }
+
+    // ── 11. "Add to Cart" in Review step ──
+    document.addEventListener('click', function (e) {
+      if (e.target && e.target.classList.contains('btn-addcart')) {
+        var price = e.target.innerText.match(/\$([\d.]+)/);
+        track('add_to_cart', {
+          value: price ? parseFloat(price[1]) : 0,
+          currency: 'USD'
+        });
+      }
+    });
+
+  });
+})();
+</script>
 </body>
 </html>
